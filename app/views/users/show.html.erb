@@ -1,0 +1,8 @@
+<%= render partial: "/layouts/navbar" %>
+<%= @user.first_name %>
+<%= image_tag @user.users_avatar %>
+<% if logged_in? %>
+	<% if current_user.superadmin? %>
+		<h4><%= link_to 'Create Tour', new_tour_path%></h4>
+	<% end %>
+<% end %>
