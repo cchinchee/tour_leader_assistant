@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180128035818) do
+ActiveRecord::Schema.define(version: 20180128073906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authentications", force: :cascade do |t|
+    t.string "uid"
+    t.string "token"
+    t.string "provider"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
 
   create_table "tours", force: :cascade do |t|
     t.date "start_date", null: false
@@ -57,6 +67,7 @@ ActiveRecord::Schema.define(version: 20180128035818) do
     t.index ["user_id"], name: "index_users_tours_on_user_id"
   end
 
+  add_foreign_key "authentications", "users"
   add_foreign_key "users_tours", "tours"
   add_foreign_key "users_tours", "users"
 end
