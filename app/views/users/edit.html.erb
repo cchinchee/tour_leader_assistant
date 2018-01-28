@@ -1,0 +1,28 @@
+<%= render partial: "/layouts/navbar" %>
+
+ <div class="container">
+ 	
+	<h2>Edit your profile here</h2>
+	<%= form_for @user, url: user_path, method: :put do |form| %>
+	    <div class="text-field form-group col-md-6">
+	        <%= form.text_field :first_name, placeholder: 'First Name', class: "form-control"%>
+	    </div>
+
+	    <div class="text-field form-group col-md-6">
+	        <%= form.text_field :last_name, placeholder: 'Last Name', class: "form-control"%>
+	    </div>
+
+	    <div class="text-field form-group col-md-6">
+	        <%= form.text_field :email, placeholder: 'Email' , class: "form-control"%>
+	    </div> 
+
+	    <div class="text-field form-group col-md-6">
+	        <%= form.text_field :phone, placeholder: 'phone' , class: "form-control"%>
+	    </div>
+
+	    <div class="form-group">
+	      <%= form.submit "Update your details", class: "text-field btn-submit form-control" %>
+	    </div>
+
+	 <% end  %>  
+ </div>

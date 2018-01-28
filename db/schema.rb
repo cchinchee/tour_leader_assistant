@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(version: 20180128073906) do
     t.string "postcode"
     t.float "latitude"
     t.float "longitude"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tours_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,6 +70,7 @@ ActiveRecord::Schema.define(version: 20180128073906) do
   end
 
   add_foreign_key "authentications", "users"
+  add_foreign_key "tours", "users"
   add_foreign_key "users_tours", "tours"
   add_foreign_key "users_tours", "users"
 end

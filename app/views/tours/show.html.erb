@@ -1,0 +1,34 @@
+<%= render partial: "/layouts/navbar" %>
+
+
+<div class="container">
+	
+	<h2>Tour details</h2>
+	<p>Start Date: <%= @tour.start_date %></p>
+	<p>End Date: <%= @tour.end_date %></p>
+	<p>Itinerary: <%= @tour.itinerary %></p>
+	<p>Customer name: <%= @tour.customer_name %></p>
+	<p>Customer email: <%= @tour.customer_email %></p>
+	<p>Customer phone: <%= @tour.customer_phone %></p>
+	<p>Customer address: <%= @tour.full_street_address %></p>
+
+<% if current_user.superadmin? %>
+	<h4><%= link_to 'Edit Tour', edit_tour_path %></h4>
+	<h4><%= link_to 'Delete Tour', tour_path(@tour.id), method: :destroy, data: { confirm: "Do you want to delete this booking?"} %></h4>
+<% end  %>	
+<div style='width: 100%;'>
+  	<div id="map" style='width: 100%; height: 400px;'>
+  	</div>
+</div>
+</div>
+
+<script type="text/javascript">
+	handler = Gmaps.build('Google');
+	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  	markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  	handler.bounds.extendWith(markers);
+  	handler.fitMapToBounds();
+  	handler.getMap().setZoom(17);
+	});
+</script>
+</div>
