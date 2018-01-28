@@ -4,6 +4,16 @@ class CreateTours < ActiveRecord::Migration[5.1]
       t.date :start_date, null:false
       t.date :end_date, null:false
       t.text :itinerary
+      t.string :customer_name
+      t.string :customer_email
+      t.string :customer_phone
+      t.string :address
+      t.string :state
+      t.string :city
+      t.string :postcode
+      t.float :latitude
+      t.float :longitude
+      
       t.timestamps
     end
   end
