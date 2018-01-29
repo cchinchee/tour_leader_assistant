@@ -1,5 +1,6 @@
 class Tour < ApplicationRecord
-	has_many :users
+	belongs_to :user
+	has_many :users, through: :users_tours
 	def full_street_address
  		[address,postcode,city,state].compact.join(',')
 	end

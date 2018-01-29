@@ -4,7 +4,7 @@ class ToursController < ApplicationController
 	before_action :check_user, only: [:update, :destroy]
 
 	def create
-		@tour = Tour.new(tour_params)
+		@tour = current_user.tours.new(tour_params)
 		if @tour.save
 		redirect_to "/tours/#{@tour.id}"
 		else

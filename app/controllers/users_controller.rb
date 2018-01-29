@@ -13,6 +13,24 @@ class UsersController < ApplicationController
 		end	
 	end	
 
+	def show
+		resp = RestClient.get("http://api.openweathermap.org/data/2.5/forecast?q=kuala%20lumpur&appid=a8b716a8725b2a5164a2565576fba07d")
+
+		hash = JSON.parse(resp.body)
+
+		@city = hash["city"]["name"]
+
+		@weather_info = []
+		i = 0
+		
+		off = DateTime.now.formatted_offset
+		hash['list'].each do |weather|
+			date_string = weather['dt_txt']
+			if DateTime.parse(date_string+off, '%Y-%m-%d %H:%M:%S%z') > DateTime.now
+				@weather_info << weather
+			end 
+		end 	 		
+	end
 
 	def login
 		@user = User.find_by(email: params[:session][:email])

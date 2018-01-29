@@ -1,4 +1,23 @@
 <%= render partial: "/layouts/navbar" %>
+<div class="container">
+	<div class="row">
+
+		<h3>Weather forcase in <%= @city %></h3>
+		
+		<% @weather_info.take(5).each do |weather| %>
+		<div class="col-md-2">
+			<%= weather["dt_txt"] %> <br>
+			<img src="http://openweathermap.org/img/w/<%= weather["weather"][0]["icon"] %>.png"><%= (weather["main"]["temp"]-273.15).round(1) %>&#8451; <br>
+			<%= weather["weather"][0]["description"] %>
+				<% if weather["weather"][0]["description"].match(/rain/) %>
+					<p>Bring umbrella!</p>
+				<% end  %>
+			<br>
+		</div>
+		<% end %>
+
+	</div>
+	<br>				
 <%= @user.first_name %>
 <%= image_tag @user.users_avatar %>
 
@@ -6,4 +25,6 @@
 	<h4><%= link_to 'View Tour', tours_all_tour_path%></h4>
 	<h4><%= link_to 'Create Tour', new_tour_path%></h4>
 <% end %>
+
+</div>
 
