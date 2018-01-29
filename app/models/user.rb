@@ -5,6 +5,8 @@ class User < ApplicationRecord
 	enum role: { user: 0, superadmin: 1}
 	mount_uploader :users_avatar, UsersAvatarUploader
 	has_many :authentications, dependent: :destroy
+  has_many :tours
+  has_many :tours, through: :users_tours
 	def self.create_with_auth_and_hash(authentication, auth_hash)
       if auth_hash.provider == 'google_oauth2'
         user = self.create!(
