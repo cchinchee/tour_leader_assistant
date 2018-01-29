@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root "users#index"
   get 'cities/:state', to: 'application#cities'
   post "/users/login" => "users#login", as: "users_login"
-  
+  get "/search" => "users#all_users"
   get "/users/log_out" => "users#logout", as: "users_logout"
   resources :users
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"

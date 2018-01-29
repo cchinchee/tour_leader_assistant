@@ -48,6 +48,14 @@ class UsersController < ApplicationController
 		redirect_to root_path
 	end
 
+	def all_users
+		if params[:search]
+			@user = User.where('lower(first_name) LIKE ?', "%#{params[:search]}%")
+		end	
+	end
+
+	
+
 	def update
 		if current_user.id == @user.id
 			@user.update(user_params)
