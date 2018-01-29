@@ -1,0 +1,16 @@
+<%= render partial: "/layouts/navbar" %>
+
+<div class="container">
+	<h3>Results for '<%= params[:search] %>'</h3>
+    <div id="users" class="row list-group">
+        <% @user.each do |u|%>
+
+         <p>First name: <%= link_to "#{u.first_name}", user_path(u.id) %></p>
+         <p>Last name: <%= u.last_name %></p>
+         <p>Email: <%= u.email %></p>
+		
+        
+        <% end %>
+    </div>
+</div>
+
