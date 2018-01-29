@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   post "/users/login" => "users#login", as: "users_login"
   
   get "/users/log_out" => "users#logout", as: "users_logout"
-  resources :users
+  resources :users do
+  	resources :date_availables
+  end
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/tours/all_tour" => "tours#all_tour", as: "tours_all_tour"
   resources :tours
+
   
 end
