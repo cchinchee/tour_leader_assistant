@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   end
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/tours/all_tour" => "tours#all_tour", as: "tours_all_tour"
-  resources :tours
+  resources :tours do
+  	resources :users_tours
+  end
 
   
 end

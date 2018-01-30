@@ -1,0 +1,45 @@
+<%= render partial: "/layouts/navbar" %>
+
+<div class="container">
+
+<p>Start Date: <%= @tour.start_date %></p>
+<p>End Date: <%= @tour.end_date %></p>
+<p>Itinerary: <%= @tour.itinerary %></p>
+
+<%= form_for UsersTour.new, url: tour_users_tours_path do |form| %>	
+
+
+<div class="form-group">
+  <h4><%= form.label :Allocate %></h4>
+  <select id="states-of-country" name="tour[state]">
+  <option id="no-state" value="" selected>Select Tour Leader</option>
+  <% CS.states(:my).each do |key, value| %>
+  	
+    <option value="<%= value %>" id="<%= key %>"><%= value %></option>
+  <% end %>
+  </select>
+</div>
+
+<% end %>
+
+	<h3>Tour Leader List</h3>
+
+	<table class="tour-list">
+		<tr class="tour-list-title row">
+			<th class="tour-list-item col-lg-3">Tour Leader Name </th>
+			<th class="tour-list-item col-lg-3">Start Date </th>
+			<th class="tour-list-item col-lg-3">End Date </th>
+		
+		</tr>
+		
+			<% @date.each do |d| %>
+			<tr class="tour-list-details row">
+				<td class="tour-list-details col-lg-3"><%= d.start_date.strftime('%d %B %Y') %></td>
+				<td class="tour-list-details col-lg-3"><%= d.end_date.strftime('%d %B %Y') %></td>
+			</tr>
+			<% end %>
+	
+	</table>
+<%= @tour_date %>
+
+</div>
