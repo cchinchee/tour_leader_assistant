@@ -6,7 +6,8 @@ class User < ApplicationRecord
 	mount_uploader :users_avatar, UsersAvatarUploader
 	has_many :authentications, dependent: :destroy
   has_many :tours
-  has_many :tours, through: :users_tours
+  has_many :users_tours
+  has_many :date_availables
 	def self.create_with_auth_and_hash(authentication, auth_hash)
       if auth_hash.provider == 'google_oauth2'
         user = self.create!(

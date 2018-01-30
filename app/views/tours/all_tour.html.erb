@@ -1,3 +1,4 @@
+<%= render partial: "/layouts/navbar" %>
 
 <div class="container">
 	<h3>All Tour List</h3>
@@ -5,24 +6,27 @@
 	<table class="tour-list">
 		<tr class="tour-list-title row">
 			
-			<th class="tour-list-item col-lg-1">No </th>
-			<th class="tour-list-item col-lg-1">Tour reference </th>
-			<th class="tour-list-item col-lg-1">Start Date </th>
-			<th class="tour-list-item col-lg-1">End Date </th>
-			<th class="tour-list-item col-lg-1">Customer name </th>
-			<th class="tour-list-item col-lg-1">Customer email</th>
-		
+			<th class="tour-list-item col-lg-2">No </th>
+			<th class="tour-list-item col-lg-2">Tour reference </th>
+			<th class="tour-list-item col-lg-2">Start Date </th>
+			<th class="tour-list-item col-lg-2">End Date </th>
+			<th class="tour-list-item col-lg-2">Customer name </th>
+			<th class="tour-list-item col-lg-2">Customer email</th>
+			<th class="tour-list-item col-lg-2">Tour Leader</th>
+
 		</tr>
 
 		<% @tour.each_with_index do |t, index| %>
 		<tr class="tour-list-details row">
 
-			<td class="tour-list-details col-lg-1"><%= index  %></td>
-			<td class="tour-list-details col-lg-1"><%= link_to t.id, tour_path(t.id)  %></td>
-			<td class="tour-list-details col-lg-1"><%= t.start_date.strftime('%d %B %Y') %></td>
-			<td class="tour-list-details col-lg-1"><%= t.end_date.strftime('%d %B %Y') %></td>
-			<td class="tour-list-details col-lg-1"><%= t.customer_name %></td>
-			<td class="tour-list-details col-lg-1"><%= t.customer_email %></td>
+			<td class="tour-list-details col-lg-2"><%= index  %></td>
+			<td class="tour-list-details col-lg-2"><%= link_to t.id, tour_path(t.id)  %></td>
+			<td class="tour-list-details col-lg-2"><%= t.start_date.strftime('%d %B %Y') %></td>
+			<td class="tour-list-details col-lg-2"><%= t.end_date.strftime('%d %B %Y') %></td>
+			<td class="tour-list-details col-lg-2"><%= t.customer_name %></td>
+			<td class="tour-list-details col-lg-2"><%= t.customer_email %></td>
+			<td class="tour-list-details col-lg-2"><%= t.customer_email %></td>
+			
 			
 			
 		</tr>

@@ -16,7 +16,9 @@
 
 <% if current_user.superadmin? %>
 	<h4><%= link_to 'Edit Tour', edit_tour_path %></h4>
-	<h4><%= link_to 'Delete Tour', tour_path(@tour.id), method: :delete, data: { confirm: "Do you want to delete this tour?"} %></h4>
+	<h4><%= link_to 'Delete Tour', tour_path(@tour.id), method: :delete, data: { confirm: "Do you want to delete this tour?"} %></h4>	
+	<h4><%= link_to 'Allocate Tour Leader', new_tour_users_tour_path(@tour.id) %></h4>
+
 <% end  %>	
 <div style='width: 100%;'>
   	<div id="map" style='width: 100%; height: 400px;'>

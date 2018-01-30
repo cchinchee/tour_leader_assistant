@@ -18,13 +18,56 @@
 
 	</div>
 	<br>				
+<% if current_user.superadmin? %>
+
+	<h4><%= link_to 'View Tour', tours_all_tour_path%></h4>
+	<h4><%= link_to 'Create Tour', new_tour_path, id:"new_tour", remote: true%></h4>
+
+<% end %>
+<br>
 <%= @user.first_name %>
 <%= image_tag @user.users_avatar %>
 
-<% if current_user.superadmin? %>
-	<h4><%= link_to 'View Tour', tours_all_tour_path%></h4>
-	<h4><%= link_to 'Create Tour', new_tour_path%></h4>
-<% end %>
+<div>
+	<p>Date available for tour allocation</p>
+	<%= form_for :date_available, url: user_date_availables_path(@user.id), id:"create_date", remote: true do |form| %>
+	<div class="text-field form-group">
+	  <p>Start Date: <%= form.date_field :start_date %> </p>
+	</div>
+
+	<div class="text-field form-group">
+	  <p>End Date: <%= form.date_field :end_date %> </p>
+	</div>
+
+	<div class="submit-field form-group" >
+ 	<%= form.submit "Submit"%>
+	</div>
+	<% end %>
+</div>
+
+<div class="table-container">
+	<h3>Date Available List</h3>
+
+	<table class="tour-list">
+		<tr class="tour-list-title row">
+			<th class="tour-list-item col-lg-3">Start Date </th>
+			<th class="tour-list-item col-lg-3">End Date </th>
+		
+		</tr>
+		<% if @user.date_availables.count == 0 %>
+			<p>You not yet submit any date available.</p>
+		<% else %>	
+			<% @user.date_availables.each do |d| %>
+			<tr class="tour-list-details row">
+				<td class="tour-list-details col-lg-3"><%= d.start_date.strftime('%d %B %Y') %></td>
+				<td class="tour-list-details col-lg-3"><%= d.end_date.strftime('%d %B %Y') %></td>
+			</tr>
+			<% end %>
+		<% end %>
+	</table>
+
+</div>	
+
 
 </div>
 

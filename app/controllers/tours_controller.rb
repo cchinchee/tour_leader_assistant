@@ -1,6 +1,6 @@
 class ToursController < ApplicationController
 	before_action :find_tour, only: [:show, :edit, :update, :destroy]
-	
+	before_action :check_superadmin, only: [:all_tour]
 	before_action :check_user, only: [:update, :destroy]
 
 	def create
@@ -52,6 +52,12 @@ class ToursController < ApplicationController
 	def check_user
 		if current_user.id != @tour.user_id
 			redirect_to root_path
+		end
+	end
+
+	def check_superadmin
+		if current_user.role != "superadmin"	
+			redirect_to "/users/#{current_user.id}" 
 		end
 	end
 end
