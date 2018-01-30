@@ -21,7 +21,7 @@
 <% if current_user.superadmin? %>
 
 	<h4><%= link_to 'View Tour', tours_all_tour_path%></h4>
-	<h4><%= link_to 'Create Tour', new_tour_path%></h4>
+	<h4><%= link_to 'Create Tour', new_tour_path, id:"new_tour", remote: true%></h4>
 
 <% end %>
 <br>
@@ -30,7 +30,7 @@
 
 <div>
 	<p>Date available for tour allocation</p>
-	<%= form_for :date_available, url: user_date_availables_path(@user.id) do |form| %>
+	<%= form_for :date_available, url: user_date_availables_path(@user.id), id:"create_date", remote: true do |form| %>
 	<div class="text-field form-group">
 	  <p>Start Date: <%= form.date_field :start_date %> </p>
 	</div>

@@ -4,8 +4,10 @@ class DateAvailablesController < ApplicationController
 	def create
 		@date_available = current_user.date_availables.new(date_params)
 		if @date_available.save
-
-			redirect_to "/users/#{current_user.id}"
+			respond_to do |format|
+			format.html { redirect_to "/users/#{current_user.id}" }	
+			format.js
+			end
 		else
 			redirect_to "/users/#{@user.id}", :flash => { :errors => "Creation failed!"}
 		end

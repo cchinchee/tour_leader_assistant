@@ -5,7 +5,7 @@ class UsersToursController < ApplicationController
 		@start_date = @tour.start_date
 		@end_date = @tour.end_date
 		@tour_date = "#{@start_date}, #{@end_date}"
-		@date = DateAvailable.where()
+		@date = DateAvailable.where(start_date: (@start_date)...(@end_date))
 	end
 
 	def create
@@ -13,3 +13,5 @@ class UsersToursController < ApplicationController
 	end
 	
 end
+
+

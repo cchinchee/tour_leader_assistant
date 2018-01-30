@@ -5,23 +5,6 @@
 <p>Start Date: <%= @tour.start_date %></p>
 <p>End Date: <%= @tour.end_date %></p>
 <p>Itinerary: <%= @tour.itinerary %></p>
-
-<%= form_for UsersTour.new, url: tour_users_tours_path do |form| %>	
-
-
-<div class="form-group">
-  <h4><%= form.label :Allocate %></h4>
-  <select id="states-of-country" name="tour[state]">
-  <option id="no-state" value="" selected>Select Tour Leader</option>
-  <% CS.states(:my).each do |key, value| %>
-  	
-    <option value="<%= value %>" id="<%= key %>"><%= value %></option>
-  <% end %>
-  </select>
-</div>
-
-<% end %>
-
 	<h3>Tour Leader List</h3>
 
 	<table class="tour-list">
@@ -34,12 +17,48 @@
 		
 			<% @date.each do |d| %>
 			<tr class="tour-list-details row">
+				<td class="tour-list-details col-lg-3"><%= d.user.first_name %></td>
 				<td class="tour-list-details col-lg-3"><%= d.start_date.strftime('%d %B %Y') %></td>
 				<td class="tour-list-details col-lg-3"><%= d.end_date.strftime('%d %B %Y') %></td>
 			</tr>
+
+			<% @tour_leader = [] %>
+
+			<% @tour_leader << d.user.first_name %>			
 			<% end %>
 	
 	</table>
-<%= @tour_date %>
+
+<%= form_for UsersTour.new, url: tour_users_tours_path do |form| %>	
+
+<div class="form-group">
+  <h4><%= form.label :Allocate_tour_leader %></h4>
+  <select id="tour_leader1" name="tour_leader[first]">
+  <option id="no-tl" value="" selected>Select Tour Leader 1</option>
+  <% CS.states(:my).each do |key, value| %>
+  	
+    <option value="<%= value %>" id="<%= key %>"><%= value %></option>
+  <% end %>
+  </select>
+
+	
+	<select id="tour_leader2" name="tour_leader[second]">
+		      	
+	<option value="" selected>Select Tour Leader 2</option>
+	</select>
+
+</div>
+  <%= form.select :tour_id, options_for_select(@tour_leader ) %>
+  <br>
+
+
+
+  <div class="form-group">
+    <%= form.submit "Allocate", class: "btn-primary" %>
+  </div> 
+
+<% end %>
+
+
 
 </div>
