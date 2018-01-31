@@ -2,7 +2,7 @@
 
 <div class="container">
 	<h3>All Tour List</h3>
-
+	
 	<table class="tour-list">
 		<tr class="tour-list-title row">
 			
@@ -10,6 +10,7 @@
 			<th class="tour-list-item col-lg-2">Tour reference </th>
 			<th class="tour-list-item col-lg-2">Start Date </th>
 			<th class="tour-list-item col-lg-2">End Date </th>
+			<th class="tour-list-item col-lg-2">Number of days </th>
 			<th class="tour-list-item col-lg-2">Customer name </th>
 			<th class="tour-list-item col-lg-2">Customer email</th>
 			<th class="tour-list-item col-lg-2">Tour Leader</th>
@@ -23,6 +24,7 @@
 			<td class="tour-list-details col-lg-2"><%= link_to t.id, tour_path(t.id)  %></td>
 			<td class="tour-list-details col-lg-2"><%= t.start_date.strftime('%d %B %Y') %></td>
 			<td class="tour-list-details col-lg-2"><%= t.end_date.strftime('%d %B %Y') %></td>
+			<td class="tour-list-details col-lg-2"><%= t.num_of_days(t.start_date,t.end_date) %></td>
 			<td class="tour-list-details col-lg-2"><%= t.customer_name %></td>
 			<td class="tour-list-details col-lg-2"><%= t.customer_email %></td>
 			<td class="tour-list-details col-lg-2"><%= t.customer_email %></td>

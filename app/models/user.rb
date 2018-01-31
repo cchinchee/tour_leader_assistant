@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :tours
   has_many :users_tours
   has_many :date_availables
+  validates :email, presence:true, uniqueness: true
+  validates :password, :first_name, :last_name, presence:true
+
 	def self.create_with_auth_and_hash(authentication, auth_hash)
       if auth_hash.provider == 'google_oauth2'
         user = self.create!(

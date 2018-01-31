@@ -9,7 +9,7 @@ class DateAvailablesController < ApplicationController
 			format.js
 			end
 		else
-			redirect_to "/users/#{@user.id}", :flash => { :errors => "Creation failed!"}
+			redirect_to "/users/#{current_user.id}", :flash => { :errors => "#{@date_available.errors.full_messages}"}
 		end
 	end
 
