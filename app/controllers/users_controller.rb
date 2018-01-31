@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 	end	
 
 	def show
+		@date_available = DateAvailable.where(user_id: params[:id])
 		resp = RestClient.get("http://api.openweathermap.org/data/2.5/forecast?q=kuala%20lumpur&appid=a8b716a8725b2a5164a2565576fba07d")
 
 		hash = JSON.parse(resp.body)
