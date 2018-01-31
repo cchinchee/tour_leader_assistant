@@ -13,6 +13,15 @@ class DateAvailablesController < ApplicationController
 		end
 	end
 
+	def destroy
+		@date_available = DateAvailable.find_by(id: params[:id])
+		@date_available.destroy
+		respond_to do |format|
+		format.html { redirect_to "/users/#{current_user.id}" }
+		format.js
+		end
+	end 
+
 	private
 	def date_params
 		params.require(:date_available).permit(:start_date, :end_date)
