@@ -13,13 +13,23 @@ class UsersToursController < ApplicationController
 				end: @end_date
 			}
 		)
-	
 	end
 
 	def create
 
+		@tl = UsersTour.new(tl_params)
+		if @tl.save
+			redirect_to "/tours/#{@tl.tour_id}"
+		else
+			redirect_to root_path
+		end	
 	end
 	
+	private
+
+	def tl_params
+		params.require(:users_tour).permit(:tour_id, :user_id)
+	end	
 end
 
 

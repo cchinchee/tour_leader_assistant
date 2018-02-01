@@ -13,6 +13,10 @@ class Tour < ApplicationRecord
 		end_date = Date.parse(end_date.to_s)
   		((end_date - start_date).to_i)+1
 	end
+
+	def check_num_of_tourleader
+		@num = self.users_tours.count
+	end	
 	geocoded_by :full_street_address
 	after_validation :geocode
 end
