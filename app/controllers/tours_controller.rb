@@ -20,6 +20,7 @@ class ToursController < ApplicationController
 		    marker.lat shop.latitude
 		    marker.lng shop.longitude
 		end
+		@users_tour = UsersTour.where(tour_id: params[:id])
 	end
 
 	def update
