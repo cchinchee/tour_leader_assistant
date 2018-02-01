@@ -7,7 +7,7 @@ class DateAvailable < ApplicationRecord
 		user.date_availables.each do |old_date|
 			if self.id != old_date.id
 				if overlap?(self, old_date)
-				  return :flash => { :errors => "the dates confict with others date."}
+				  return errors.add(:overlapping_dates, "The date has conflict with others date.")
 				end
 			end	
 		end 	 
