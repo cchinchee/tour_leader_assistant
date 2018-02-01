@@ -47,7 +47,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 # Photo Upload
 gem 'carrierwave'
-
+gem 'rails_12factor', group: :production
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
