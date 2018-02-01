@@ -2,6 +2,7 @@
 
 <div class="container">
 
+<p></p>
 <p>Start Date: <%= @tour.start_date %></p>
 <p>End Date: <%= @tour.end_date %></p>
 <p>Itinerary: <%= @tour.itinerary %></p>
@@ -48,14 +49,18 @@
 	</select>
 
 </div>
-  <%= form.select :tour_id, options_for_select(@tour_leader) %>
+	<% if @tour_leader != nil %>
+	  	<%= form.select :tour_id, options_for_select(@tour_leader) %>
+  		
+    	<%= form.submit "Allocate", class: "btn-primary" %>
+  	 
+	<% else %>
+		<p>There is no tour leader available.</p>  	
+	<% end  %>	
   <br>
 
 
 
-  <div class="form-group">
-    <%= form.submit "Allocate", class: "btn-primary" %>
-  </div> 
 
 <% end %>
 

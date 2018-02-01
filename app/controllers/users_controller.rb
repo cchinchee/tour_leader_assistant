@@ -74,7 +74,11 @@ class UsersController < ApplicationController
 	end
 
 	def find_user
-		@user = User.find_by(id: params[:id])
+		if @user = User.find_by(id: params[:id])
+			return @user
+		else
+			redirect_to "/", :flash => { :errors => "Error!!!!"}	
+		end
 	end
 
 	def require_login
