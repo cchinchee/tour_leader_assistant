@@ -15,5 +15,7 @@ Rails.application.routes.draw do
   	resources :users_tours
   end
 
+  get "/*path" => "users#index"
+
   
 end
