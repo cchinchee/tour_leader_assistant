@@ -20,10 +20,11 @@
 	</div>
 	<br>				
 <% if current_user.superadmin? %>
+	<% if current_user.id == @user.id  %>
 
 	<h4><%= link_to 'View Tour', tours_all_tour_path%></h4>
 	<h4><%= link_to 'Create Tour', new_tour_path, id:"new_tour", remote: true%></h4>
-
+	<% end %>
 <% end %>
 <br>
 <%= @user.first_name %>
