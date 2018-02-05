@@ -12,26 +12,23 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-     
-        <div class="search-bar">
-        <%= form_tag "/search", method: :get do %>
-          <div class="search-column col-md-4">
 
-            <%= text_field_tag :search, params[:search], placeholder: "Search", class:"form-control" %>
-            
-          </div>
-          <div class="search-btn col-md-2">  
-            <%= submit_tag "Search", class:"btn btn-default" %>
-          
-          </div>
-        
-        <% end %>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="row">
+        <div id="custom-search-input" class="col-md-6">
+          <%= form_tag "/search", method: :get do %>
+            <div class="input-group">
+                <%= text_field_tag :search, params[:search], placeholder: "Search", class:"form-control input-lg" %>
+                <span class="input-group-btn">
+  
+                    <%= button_tag(type: "submit", class: "btn btn-info btn-lg") do %>
+                      <i class="glyphicon glyphicon-search"></i>
+                    <% end %>
+                </span>
+            </div>
+          <% end  %>  
         </div>
       <ul class="nav navbar-nav navbar-right">
-
-
-        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -45,6 +42,7 @@
           </ul>
         </li>
       </ul>
+      </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
